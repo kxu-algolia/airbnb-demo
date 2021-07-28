@@ -25,8 +25,22 @@ injectScript(
                     mapTypeId: window.google.maps.MapTypeId.SATELLITE,
                 },
             }),
+            instantsearch.widgets.hits({
+                container: '#hits',
+                templates: {
+                    item(hit) {
+                        return `
+                            <div class="item">
+                                <a href=${hit.listing_url} target="_blank">
+                                    <img class="item-image" src="${hit.picture_url}">
+                                </a>
+                                <p>${hit.name}</p>
+                            </div>
+                        `;
+                    }
+                },
+            }),
         ]);
-
         search.start();
     }
 );

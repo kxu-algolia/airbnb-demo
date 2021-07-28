@@ -47,7 +47,7 @@ body {
   font-size: 1.2rem;
 }
 
-.container {
+.main-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
@@ -76,4 +76,43 @@ body {
 
 #maps {
   height: 500px;
+}
+
+
+/**********************************************************
+ * Custom
+ *********************************************************/
+
+.search-bar-container {
+    width: 100%;
+}
+
+.results-container {
+    width: 100%;
+    overflow: scroll;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+/* only display 2 results per row */
+.ais-Hits-item {
+    width: calc(50% - 1rem);
+}
+
+.item img {
+    object-fit: contain;
+    height: 250px;
+    width: 250px;
 }
