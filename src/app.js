@@ -22,7 +22,7 @@ injectScript(
                 container: '#maps',
                 googleReference: window.google,
                 mapOptions: {
-                    mapTypeId: window.google.maps.MapTypeId.SATELLITE,
+                    mapTypeId: window.google.maps.MapTypeId.ROADMAP,
                 },
             }),
             instantsearch.widgets.hits({

@@ -48,7 +48,8 @@ body {
 }
 
 .main-container {
-  max-width: 1200px;
+  height: 100vh;
+  width: 80vw;
   margin: 0 auto;
   padding: 1rem;
 }
@@ -75,7 +76,7 @@ body {
 }
 
 #maps {
-  height: 500px;
+  height: 800px;
 }
 
 
@@ -88,8 +89,9 @@ body {
 }
 
 .results-container {
+    height: 100%;
     width: 100%;
-    overflow: scroll;
+    /*overflow: scroll;*/
 }
 
 .row {
@@ -104,6 +106,8 @@ body {
   flex-direction: column;
   flex-basis: 100%;
   flex: 1;
+  height: 100%;
+  overflow: scroll;
 }
 
 /* only display 2 results per row */
