@@ -12,9 +12,13 @@ injectScript(
         const search = instantsearch({
             indexName: 'listings',
             searchClient,
+            hitsPerPage: 8,
         });
 
         search.addWidgets([
+            instantsearch.widgets.configure({
+                hitsPerPage: 8,
+            }),
             instantsearch.widgets.searchBox({
                 container: '#searchbox',
             }),
@@ -29,16 +33,28 @@ injectScript(
                 container: '#hits',
                 templates: {
                     item(hit) {
+                        var badge = '';
+                        if (hit.is_furnished) badge += "Furnished · ";
+                        if (hit.has_pool) badge += "Pool · ";
+                        if (hit.is_pet_friendly) badge += "Pet friendly · ";
+                        if (badge) badge = badge.substring(0, badge.length - 3);
+
                         return `
                             <div class="item">
                                 <a href=${hit.listing_url} target="_blank">
                                     <img class="item-image" src="${hit.picture_url}">
                                 </a>
-                                <p>${hit.name}</p>
+                                <p class="item-header">${hit.property_type} in ${hit.neighborhood}</p>
+                                <h3>${hit.name}</h3>
+                                <p>$ ${hit.price_per_day} / night</p>
+                                <p>${badge}</p>
                             </div>
                         `;
                     }
                 },
+            }),
+            instantsearch.widgets.pagination({
+                container: '#pagination'
             }),
         ]);
         search.start();
