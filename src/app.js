@@ -1,7 +1,6 @@
 /* global algoliasearch instantsearch */
 
 import injectScript from 'scriptjs';
-
 import { createDropdown } from './dropdown';
 
 /**********************************************************
@@ -37,49 +36,42 @@ const brandDropdown = createDropdown(instantsearch.widgets.refinementList, {
 });
 
 
-/*
-const brandDropdown = createDropdown(instantsearch.widgets.refinementList, {
-  // closeOnChange: true,
-  closeOnChange: () => window.innerWidth >= MOBILE_WIDTH,
-  cssClasses: { root: 'my-BrandDropdown' },
-});
-
-const priceDropdown = createDropdown(instantsearch.widgets.rangeSlider, {
-  buttonText({ start }) {
-    const s = start && Number.isFinite(start[0]) ? start[0] : '';
-    const e = start && Number.isFinite(start[1]) ? start[1] : '';
-    return s || e ? `Price (${s}~${e})` : 'Price Slider';
-  },
-  buttonClassName({ start }) {
-    const isRefined =
-      Number.isFinite(start && start[0]) || Number.isFinite(start && start[1]);
-    return isRefined && 'ais-Dropdown-button--refined';
-  },
-});
-
-const priceMenuDropdown = createDropdown(instantsearch.widgets.numericMenu, {
-  buttonText({ items }) {
-    const refinedItem = (items || []).find(
-      (item) => item.label !== 'All' && item.isRefined
-    );
-    return refinedItem ? `Price (${refinedItem.label})` : 'Price Menu';
-  },
-  buttonClassName({ items }) {
-    const isRefined = (items || []).find(
-      (item) => item.label !== 'All' && item.isRefined
-    );
-    return isRefined && 'ais-Dropdown-button--refined';
-  },
-});
-
-const categoryDropdown = createDropdown(
-  instantsearch.widgets.hierarchicalMenu,
-  {
-    buttonText: 'Category',
-  }
-);
-*/
-
+const noResultsFeaturedCarousel = `
+    <div>No results. Check out our Featured Listings</div>
+    <div class="ais-Hits">
+        <ol class="ais-Hits-list">
+            <li class="ais-Hits-item">
+                <div class="item">
+                    <a href="https://www.airbnb.com/rooms/992821" target="_blank">
+                        <img class="item-image" src="https://a0.muscache.com/pictures/be420050-6c9c-4b3e-9f5d-aea30148d816.jpg">
+                    </a>
+                    <p class="item-header">Entire house in Woodside Hills</p>
+                    <h3>Serene West Asheville Home with a Mountain View</h3>
+                    <p>$174 / night</p>
+                </div>
+            </li>
+            <li class="ais-Hits-item">
+                <div class="item">
+                    <a href="https://www.airbnb.com/rooms/992821" target="_blank">
+                        <img class="item-image" src="https://a0.muscache.com/pictures/be420050-6c9c-4b3e-9f5d-aea30148d816.jpg">
+                    </a>
+                    <p class="item-header">Entire house in Woodside Hills</p>
+                    <h3>Serene West Asheville Home with a Mountain View</h3>
+                    <p>$174 / night</p>
+                </div>
+            </li>
+            <li class="ais-Hits-item">
+                <div class="item">
+                    <a href="https://www.airbnb.com/rooms/992821" target="_blank">
+                        <img class="item-image" src="https://a0.muscache.com/pictures/be420050-6c9c-4b3e-9f5d-aea30148d816.jpg">
+                    </a>
+                    <p class="item-header">Entire house in Woodside Hills</p>
+                    <h3>Serene West Asheville Home with a Mountain View</h3>
+                    <p>$174 / night</p>
+                </div>
+            </li>
+        </ol>
+    </div>`;
 
 
 injectScript(
@@ -112,6 +104,7 @@ injectScript(
             instantsearch.widgets.hits({
                 container: '#hits',
                 templates: {
+                    empty: noResultsFeaturedCarousel,
                     item(hit) {
                         var badge = '';
                         if (hit.is_furnished) badge += "Furnished · ";
@@ -157,42 +150,6 @@ injectScript(
                 attribute: 'room_type',
                 lable: 'Room Type',
               }),
-
-              /*
-              brandDropdown({
-                container: '#brand',
-                attribute: 'brand',
-                searchable: true,
-              }),
-              refinementListDropdown({
-                container: '#type',
-                attribute: 'type',
-                searchable: true,
-              }),
-              priceDropdown({
-                container: '#price',
-                attribute: 'price',
-              }),
-              priceMenuDropdown({
-                container: '#price2',
-                attribute: 'price',
-                items: [
-                  { label: 'All' },
-                  { end: 4, label: 'less than 4' },
-                  { start: 4, end: 4, label: '4' },
-                  { start: 5, end: 10, label: 'between 5 and 10' },
-                  { start: 10, label: 'more than 10' },
-                ],
-              }),
-              categoryDropdown({
-                container: '#category',
-                attributes: [
-                  'hierarchicalCategories.lvl0',
-                  'hierarchicalCategories.lvl1',
-                  'hierarchicalCategories.lvl2',
-                ],
-              }),
-              */
         ]);
         search.start();
     }
