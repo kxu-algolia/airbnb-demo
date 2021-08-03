@@ -12,7 +12,9 @@
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css"
             />
+
         <link rel="stylesheet" href="./src/app.css" />
+        <link rel="stylesheet" href="./src/dropdown.css">
 
         <title>geo-search-hits</title>
     </head>
@@ -27,7 +29,7 @@
             </a>
             </p>
         </header>
-
+        
         <div class="main-container">
             <div class="search-bar-container row">
                 <div class="column">
@@ -37,10 +39,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="column">
-
-                </div>
             </div>
+            <div class="search-bar-container row">
+                  <div class="search-panel__filters">
+                    <div id="numBaths"></div>
+                    <div id="numBeds"></div>
+                    <div id="neighborhood"></div>
+
+                    <!--
+                    <div id="price"></div>
+                    <div id="price2"></div>
+                    <div id="category"></div>
+                    -->
+                  </div>            
+            </div>
+
             <div class="results-container row">
                 <div class="column">
                     <div class="search-panel">

@@ -71,14 +71,89 @@ body {
   font-size: inherit;
 }
 
+
 #searchbox {
-  margin-bottom: 2rem;
+  /* margin-bottom: 2rem; */
 }
+
 
 #maps {
   height: 800px;
 }
 
+/**********************************************************
+ * Dropdown Widgets
+ *********************************************************/
+
+
+.search-panel__filters {
+  display: flex;
+}
+
+.search-panel__filters > div {
+  margin-right: 1rem;
+}
+
+.search-panel__filters > div:last-child {
+  margin-right: 0;
+}
+
+.ais-HierarchicalMenu-list,
+.ais-Menu-list,
+.ais-NumericMenu-list,
+.ais-RatingMenu-list,
+.ais-RefinementList-list {
+  font-weight: normal;
+}
+
+.ais-Breadcrumb-item--selected,
+.ais-HierarchicalMenu-item--selected,
+.ais-Menu-item--selected {
+  font-weight: bold;
+}
+
+#category .ais-HierarchicalMenu {
+  height: 195px;
+  overflow: auto;
+}
+
+#price .ais-RangeSlider {
+  width: 12rem;
+}
+
+#price2 .ais-NumericMenu-list {
+  width: 7rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.my-BrandDropdown .ais-RefinementList-list {
+  width: 20rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.my-BrandDropdown .ais-RefinementList-item {
+  margin: 0.2rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 2em;
+  background: #ccc;
+}
+
+.my-BrandDropdown .ais-RefinementList-item .ais-RefinementList-checkbox {
+  display: none;
+}
+
+.my-BrandDropdown .ais-RefinementList-item.ais-RefinementList-item--selected {
+  background: #333;
+  color: #fff;
+}
+
+.my-BrandDropdown .ais-RefinementList-label mark {
+  background: none;
+  text-decoration: underline;
+  font-weight: bold;
+}
 
 /**********************************************************
  * Custom
@@ -86,6 +161,7 @@ body {
 
 .search-bar-container {
     width: 100%;
+    margin-bottom: 1rem;
 }
 
 .results-container {
