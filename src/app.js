@@ -10,18 +10,30 @@ import { createDropdown } from './dropdown';
 
 const MOBILE_WIDTH = 375;
 
-const refinementListDropdown = createDropdown(
-  instantsearch.widgets.refinementList,
-  {
-    // closeOnChange: true,
+const bedroomsDropdown = createDropdown(
+  instantsearch.widgets.refinementList, {
     closeOnChange: () => window.innerWidth >= MOBILE_WIDTH,
+    cssClasses: { root: 'my-NumericDropdown'},
+
   }
 );
-
+const bathroomsDropdown = createDropdown(
+  instantsearch.widgets.refinementList, {
+    closeOnChange: () => window.innerWidth >= MOBILE_WIDTH,
+    cssClasses: { root: 'my-NumericDropdown'},
+  }
+);
+const roomTypeDropdown = createDropdown(
+  instantsearch.widgets.refinementList, {
+    closeOnChange: () => window.innerWidth >= MOBILE_WIDTH,
+    cssClasses: { root: 'my-RoomTypeDropdown' },
+    buttonText: 'Room Type',
+  }
+);
 const brandDropdown = createDropdown(instantsearch.widgets.refinementList, {
   // closeOnChange: true,
   closeOnChange: () => window.innerWidth >= MOBILE_WIDTH,
-  cssClasses: { root: 'my-BrandDropdown' },
+  cssClasses: { root: 'my-BrandDropdown'},
 });
 
 
@@ -125,22 +137,25 @@ injectScript(
                 container: '#pagination'
             }),
 
-              refinementListDropdown({
+              bedroomsDropdown({
                 container: '#numBeds',
                 attribute: 'bedrooms',
                 sortBy: ["name: asc"],
               }),
-
-              refinementListDropdown({
+              bathroomsDropdown({
                 container: '#numBaths',
                 attribute: 'bathrooms',
                 sortBy: ["name: asc"],
               }),
-
               brandDropdown({
                 container: '#neighborhood',
                 attribute: 'neighborhood',
                 searchable: true,
+              }),
+              roomTypeDropdown({
+                container: '#roomType',
+                attribute: 'room_type',
+                lable: 'Room Type',
               }),
 
               /*

@@ -127,6 +127,12 @@ body {
   flex-wrap: wrap;
 }
 
+/* display refinement list in front of map */
+.ais-RefinementList {
+  z-index: 7;
+  position: relative;
+}
+
 .my-BrandDropdown .ais-RefinementList-list {
   width: 20rem;
   display: flex;
@@ -153,6 +159,13 @@ body {
   background: none;
   text-decoration: underline;
   font-weight: bold;
+}
+
+.my-RoomTypeDropdown .ais-RefinementList {
+  width: 200%;
+}
+.my-NumericDropdown .ais-RefinementList {
+  width: 125%;
 }
 
 /**********************************************************
