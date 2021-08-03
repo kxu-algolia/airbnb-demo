@@ -4,12 +4,12 @@
 
 body,
 h1 {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
     Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
@@ -19,66 +19,66 @@ body {
  *********************************************************/
 
 .header {
-  display: flex;
-  align-items: center;
-  min-height: 50px;
-  padding: 0.5rem 1rem;
-  background-image: linear-gradient(284deg, #fedd4e, #fcb43a);
-  color: #fff;
-  margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    padding: 0.5rem 1rem;
+    background-image: linear-gradient(284deg, #fedd4e, #fcb43a);
+    color: #fff;
+    margin-bottom: 1rem;
 }
 
 .header a {
-  color: #fff;
-  text-decoration: none;
+    color: #fff;
+    text-decoration: none;
 }
 
 .header-title {
-  font-size: 1.2rem;
-  font-weight: normal;
+    font-size: 1.2rem;
+    font-weight: normal;
 }
 
 .header-title::after {
-  content: ' ▸ ';
-  padding: 0 0.5rem;
+    content: ' ▸ ';
+    padding: 0 0.5rem;
 }
 
 .header-subtitle {
-  font-size: 1.2rem;
+    font-size: 1.2rem;
 }
 
 .main-container {
-  height: 80vh;     /* take into account header */
-  width: 80vw;
-  margin: 0 auto;
-  padding: 1rem;
+    height: 80vh;     /* take into account header */
+    width: 80vw;
+    margin: 0 auto;
+    padding: 1rem;
 }
 
 .search-panel {
-  display: flex;
+    display: flex;
 }
 
 .search-panel__filters {
-  flex: 1;
+    flex: 1;
 }
 
 .search-panel__results {
-  flex: 3;
+    flex: 3;
 }
 
 .ais-Highlight-highlighted {
-  color: inherit;
-  font-size: inherit;
+    color: inherit;
+    font-size: inherit;
 }
 
 
 #searchbox {
-  /* margin-bottom: 2rem; */
+    /* margin-bottom: 2rem; */
 }
 
 
 #maps {
-  height: 800px;
+    height: 800px;
 }
 
 /**********************************************************
@@ -87,15 +87,15 @@ body {
 
 
 .search-panel__filters {
-  display: flex;
+    display: flex;
 }
 
 .search-panel__filters > div {
-  margin-right: 1rem;
+    margin-right: 1rem;
 }
 
 .search-panel__filters > div:last-child {
-  margin-right: 0;
+    margin-right: 0;
 }
 
 .ais-HierarchicalMenu-list,
@@ -103,69 +103,69 @@ body {
 .ais-NumericMenu-list,
 .ais-RatingMenu-list,
 .ais-RefinementList-list {
-  font-weight: normal;
+    font-weight: normal;
 }
 
 .ais-Breadcrumb-item--selected,
 .ais-HierarchicalMenu-item--selected,
 .ais-Menu-item--selected {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 #category .ais-HierarchicalMenu {
-  height: 195px;
-  overflow: auto;
+    height: 195px;
+    overflow: auto;
 }
 
 #price .ais-RangeSlider {
-  width: 12rem;
+    width: 12rem;
 }
 
 #price2 .ais-NumericMenu-list {
-  width: 7rem;
-  display: flex;
-  flex-wrap: wrap;
+    width: 7rem;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 /* display refinement list in front of map */
 .ais-RefinementList {
-  z-index: 7;
-  position: relative;
+    z-index: 7;
+    position: relative;
 }
 
 .my-BrandDropdown .ais-RefinementList-list {
-  width: 20rem;
-  display: flex;
-  flex-wrap: wrap;
+    width: 20rem;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .my-BrandDropdown .ais-RefinementList-item {
-  margin: 0.2rem;
-  padding: 0.1rem 0.5rem;
-  border-radius: 2em;
-  background: #ccc;
+    margin: 0.2rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 2em;
+    background: #ccc;
 }
 
 .my-BrandDropdown .ais-RefinementList-item .ais-RefinementList-checkbox {
-  display: none;
+    display: none;
 }
 
 .my-BrandDropdown .ais-RefinementList-item.ais-RefinementList-item--selected {
-  background: #333;
-  color: #fff;
+    background: #333;
+    color: #fff;
 }
 
 .my-BrandDropdown .ais-RefinementList-label mark {
-  background: none;
-  text-decoration: underline;
-  font-weight: bold;
+    background: none;
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 .my-RoomTypeDropdown .ais-RefinementList {
-  width: 200%;
+    width: 200%;
 }
 .my-NumericDropdown .ais-RefinementList {
-  width: 125%;
+    width: 125%;
 }
 
 /**********************************************************
@@ -184,19 +184,19 @@ body {
 }
 
 .row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .column {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 100%;
-  flex: 1;
-  height: 100%;
-  overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    height: 100%;
+    overflow: scroll;
 }
 
 /* only display 2 results per row */

@@ -10,29 +10,29 @@ import { createDropdown } from './dropdown';
 const MOBILE_WIDTH = 375;
 
 const bedroomsDropdown = createDropdown(
-  instantsearch.widgets.refinementList, {
-    closeOnChange: () => window.innerWidth >= MOBILE_WIDTH,
-    cssClasses: { root: 'my-NumericDropdown'},
+    instantsearch.widgets.refinementList, {
+        closeOnChange: () => window.innerWidth >= MOBILE_WIDTH,
+        cssClasses: { root: 'my-NumericDropdown'},
 
-  }
+    }
 );
 const bathroomsDropdown = createDropdown(
-  instantsearch.widgets.refinementList, {
-    closeOnChange: () => window.innerWidth >= MOBILE_WIDTH,
-    cssClasses: { root: 'my-NumericDropdown'},
-  }
+    instantsearch.widgets.refinementList, {
+        closeOnChange: () => window.innerWidth >= MOBILE_WIDTH,
+        cssClasses: { root: 'my-NumericDropdown'},
+    }
 );
 const roomTypeDropdown = createDropdown(
-  instantsearch.widgets.refinementList, {
-    closeOnChange: () => window.innerWidth >= MOBILE_WIDTH,
-    cssClasses: { root: 'my-RoomTypeDropdown' },
-    buttonText: 'Room Type',
-  }
+    instantsearch.widgets.refinementList, {
+        closeOnChange: () => window.innerWidth >= MOBILE_WIDTH,
+        cssClasses: { root: 'my-RoomTypeDropdown' },
+        buttonText: 'Room Type',
+    }
 );
 const brandDropdown = createDropdown(instantsearch.widgets.refinementList, {
-  // closeOnChange: true,
-  closeOnChange: () => window.innerWidth >= MOBILE_WIDTH,
-  cssClasses: { root: 'my-BrandDropdown'},
+    // closeOnChange: true,
+    closeOnChange: () => window.innerWidth >= MOBILE_WIDTH,
+    cssClasses: { root: 'my-BrandDropdown'},
 });
 
 
@@ -72,7 +72,6 @@ const noResultsFeaturedCarousel = `
             </li>
         </ol>
     </div>`;
-
 
 injectScript(
     'https://maps.googleapis.com/maps/api/js?v=quarterly&key=AIzaSyB7cCA9xZH3viDwm5Lbhf9eA5LRfmltrjc',
@@ -130,26 +129,26 @@ injectScript(
                 container: '#pagination'
             }),
 
-              bedroomsDropdown({
+            bedroomsDropdown({
                 container: '#numBeds',
                 attribute: 'bedrooms',
                 sortBy: ["name: asc"],
-              }),
-              bathroomsDropdown({
+            }),
+            bathroomsDropdown({
                 container: '#numBaths',
                 attribute: 'bathrooms',
                 sortBy: ["name: asc"],
-              }),
-              brandDropdown({
+            }),
+            brandDropdown({
                 container: '#neighborhood',
                 attribute: 'neighborhood',
                 searchable: true,
-              }),
-              roomTypeDropdown({
+            }),
+            roomTypeDropdown({
                 container: '#roomType',
                 attribute: 'room_type',
                 lable: 'Room Type',
-              }),
+            }),
         ]);
         search.start();
     }
