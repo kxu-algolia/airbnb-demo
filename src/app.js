@@ -99,6 +99,13 @@ injectScript(
                 mapOptions: {
                     mapTypeId: window.google.maps.MapTypeId.ROADMAP,
                 },
+                templates: {
+                  HTMLMarker: `
+                    <span class="marker">
+                      $\{{ price_per_day }}
+                    </span>
+                  `,
+                },
             }),
             instantsearch.widgets.hits({
                 container: '#hits',

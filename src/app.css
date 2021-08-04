@@ -81,6 +81,14 @@ body {
     height: 800px;
 }
 
+.marker {
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+  font-size: 12px;
+}
+
 /**********************************************************
  * Dropdown Widgets
  *********************************************************/
