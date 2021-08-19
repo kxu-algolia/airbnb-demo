@@ -3,6 +3,31 @@
 import injectScript from 'scriptjs';
 import { createDropdown } from './dropdown';
 
+/**********************************************************
+ * Modal
+ *********************************************************/
+
+var modal = document.getElementById("myModal");
+var calendar = document.getElementById("calendar");
+
+if (document.body.addEventListener){
+    document.body.addEventListener('click',yourHandler,false);
+} else{
+    document.body.attachEvent('onclick',yourHandler);//for IE
+}
+
+function yourHandler(e){
+    e = e || window.event;
+    var target = e.target || e.srcElement;
+    if (target.className.match(/myBtn/)) {
+        modal.style.display = "block";
+        calendar.style.display = "none";
+    }
+      if (e.target == modal) {
+        modal.style.display = "none";
+        calendar.style.display = "block";
+      }
+}
 
 /**********************************************************
  * Calendar Picker
@@ -138,7 +163,7 @@ injectScript(
                 },
                 templates: {
                   HTMLMarker: `
-                    <span class="marker">
+                    <span class="marker myBtn">
                       $\{{ price_per_day }}
                     </span>
                   `,
@@ -154,6 +179,8 @@ injectScript(
                         if (hit.has_pool) badge += "Pool · ";
                         if (hit.is_pet_friendly) badge += "Pet friendly · ";
                         if (badge) badge = badge.substring(0, badge.length - 3);
+                        
+                        // <p class="item-subtitle">${badge}</p>
 
                         return `
                             <div class="item">
@@ -161,9 +188,14 @@ injectScript(
                                     <img class="item-image" src="${hit.picture_url}">
                                 </a>
                                 <p class="item-header">${hit.property_type} in ${hit.neighborhood}</p>
-                                <h3 class="item-name">${hit.name}</h3>
-                                <p class="item-subtitle">$ ${hit.price_per_day} / night</p>
-                                <p class="item-subtitle">${badge}</p>
+                                <p class="item-name">${hit.name}</p>
+
+                                <p class="item-subtitle">${hit.accommodates} guests * ${hit.bedrooms} bedrooms * ${hit.bathrooms} bathrooms</p>
+                                <br>
+                                <p class="item-reviews"><b>⭐ ${hit.review_score}</b> (${hit.review_count} reviews)</p>
+                                <p class="item-reviews"><b>💲 ${hit.price_per_day}</b> / night</p>
+
+                                <button style="margin-top:1rem;" class="myBtn">View</button>
                             </div>
                         `;
                     }
