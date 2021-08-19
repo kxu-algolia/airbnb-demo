@@ -23,10 +23,10 @@ function yourHandler(e){
         modal.style.display = "block";
         calendar.style.display = "none";
     }
-      if (e.target == modal) {
+    if (e.target == modal) {
         modal.style.display = "none";
         calendar.style.display = "block";
-      }
+    }
 }
 
 /**********************************************************
@@ -36,34 +36,34 @@ function yourHandler(e){
 const ONE_DAY_IN_MS = 3600 * 24 * 1000;
 
 const makeRangeWidget = instantsearch.connectors.connectRange(
-  (options, isFirstRendering) => {
-    if (!isFirstRendering) {
-      return;
+    (options, isFirstRendering) => {
+        if (!isFirstRendering) {
+            return;
+        }
+
+        const { refine } = options;
+
+        new Calendar({
+            element: $('#calendar'),
+            same_day_range: true,
+            callback: function() {
+                const start = new Date(this.start_date).getTime();
+                const end = new Date(this.end_date).getTime();
+                const actualEnd = start === end ? end + ONE_DAY_IN_MS - 1 : end;
+
+                refine([start, actualEnd]);
+            },
+            // Some good parameters based on our dataset:
+            start_date: new Date('8/01/2021'),
+            end_date: new Date('8/31/2021'),
+            earliest_date: new Date('01/01/2021'),
+            latest_date: new Date('01/01/2022'),
+        });
     }
-
-    const { refine } = options;
-
-    new Calendar({
-      element: $('#calendar'),
-      same_day_range: true,
-      callback: function() {
-        const start = new Date(this.start_date).getTime();
-        const end = new Date(this.end_date).getTime();
-        const actualEnd = start === end ? end + ONE_DAY_IN_MS - 1 : end;
-
-        refine([start, actualEnd]);
-      },
-      // Some good parameters based on our dataset:
-      start_date: new Date('8/01/2021'),
-      end_date: new Date('8/31/2021'),
-      earliest_date: new Date('01/01/2021'),
-      latest_date: new Date('01/01/2022'),
-    });
-  }
 );
 
 const dateRangeWidget = makeRangeWidget({
-  attribute: 'start_at',
+    attribute: 'start_at',
 });
 
 /**********************************************************
@@ -162,7 +162,7 @@ injectScript(
                     mapTypeId: window.google.maps.MapTypeId.ROADMAP,
                 },
                 templates: {
-                  HTMLMarker: `
+                    HTMLMarker: `
                     <span class="marker myBtn">
                       $\{{ price_per_day }}
                     </span>
@@ -179,7 +179,7 @@ injectScript(
                         if (hit.has_pool) badge += "Pool · ";
                         if (hit.is_pet_friendly) badge += "Pet friendly · ";
                         if (badge) badge = badge.substring(0, badge.length - 3);
-                        
+
                         // <p class="item-subtitle">${badge}</p>
 
                         return `
@@ -234,4 +234,3 @@ injectScript(
         search.start();
     }
 );
-
