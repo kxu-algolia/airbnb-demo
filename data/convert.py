@@ -51,36 +51,19 @@ def mergeDicts(d1, d2):
     return res
 
 def process_rows(row):
-    all_records = []
     listing_data = process_row(row)
 
-    # 50% of the most popular listings (>4.8) will be unavailable in September
-    is_unavailable_in_sep = False
-    if listing_data["review_score"] > 4.8 and random.randrange(10) >= 5:
-        #print(listing_data["listingID"], "unavailable in September")
-        is_unavailable_in_sep = True
+    # Most of the listings are available on 8/23
+    # Some of the listings are only available on 8/16
+    if random.randrange(0, 10) >= 3:
+        date = { "start_at": 1629691200 }   # 8/23
+        record = mergeDicts(listing_data, date)
+        return [ record ]
+    else: 
+        date = { "start_at": 1629086400 }   # 8/16
+        record = mergeDicts(listing_data, date)
+        return [ record ]
 
-    # Date Availability: [8/4 - 9/8]
-    start_date = date(2021, 8, 4)
-    end_date = date(2021, 9, 9)
-    for single_date in daterange(start_date, end_date):
-        date_data = {}
-        date_str = single_date.strftime("%Y-%m-%d")
-        date_ts = single_date.strftime('%s')
-
-        # set all available = False in september 
-        is_available = True
-        if is_unavailable_in_sep and date_ts > 1630382400:
-            is_available = False
-
-        date_data["date"] = date_str
-        date_data["date_ts"] = int(date_ts)
-        date_data["is_available"] = is_available
-
-        record = mergeDicts(listing_data, date_data)
-        all_records.append(record)
-
-    return all_records
 
 def process_row(row):
     record = {}
@@ -160,7 +143,6 @@ def make_json(csvFilePath, jsonFilePath):
             except Exception:
                 pass
 
-
     # Open a json writer, and use the json.dumps()
     with open(jsonFilePath, 'w', encoding='utf-8') as jsonf:
         jsonf.write(json.dumps(data, indent=4))
@@ -169,6 +151,6 @@ def make_json(csvFilePath, jsonFilePath):
 Driver Code
 '''
 csvFilePath = r'asheville.csv'
-jsonFilePath = r'asheville_w_dates.json'
+jsonFilePath = r'asheville_w_single_dates.json'
 
 make_json(csvFilePath, jsonFilePath)
