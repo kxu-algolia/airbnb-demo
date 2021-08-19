@@ -13,38 +13,38 @@
             />
         <link rel="stylesheet" href="./src/app.css" />
         <link rel="stylesheet" href="./src/dropdown.css">
+        <link rel="stylesheet" href="./src/calendar.css">
         <title>Algolia BNB</title>
     </head>
 
     <body>
         <header class="header">
-            <h1 class="header-title"><a href="/">geo-search-hits</a></h1>
-            <p class="header-subtitle">
-            using
-            <a href="https://community.algolia.com/instantsearch.js/">
-                InstantSearch.js
-            </a>
-            </p>
+            <div class="row">
+                <div class="column">
+                    <h2>Algolia-BnB</h2>
+                </div>
+                <div class="column header-right">
+                    <p>Create An Account</p>
+                </div>
+            </div>
         </header>
 
         <div class="main-container">
             <div class="search-bar-container row">
-                <div class="column">
-                    <div class="search-panel">
-                        <div class="search-panel__results">
-                            <div id="searchbox"></div>
-                        </div>
+                <div class="search-panel">
+                    <div class="search-panel__results">
+                        <div id="searchbox"></div>
                     </div>
                 </div>
-            </div>
-            <div class="search-bar-container row">
                 <div class="search-panel__filters">
                     <div id="numBaths"></div>
                     <div id="numBeds"></div>
                     <div id="neighborhood"></div>
                     <div id="roomType"></div>
+                    <div id="calendar" class="daterange"></div>
                 </div>
             </div>
+
             <div class="results-container row">
                 <div class="column">
                     <div class="search-panel">
@@ -64,6 +64,10 @@
             </div>
             <div id="pagination"></div>
         </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+        <script src="https://unpkg.com/BaremetricsCalendar@1.0.11/public/js/Calendar.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4/dist/algoliasearch-lite.umd.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4"></script>
         <script src="./src/app.js"></script>

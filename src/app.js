@@ -3,6 +3,44 @@
 import injectScript from 'scriptjs';
 import { createDropdown } from './dropdown';
 
+
+/**********************************************************
+ * Calendar Picker
+ *********************************************************/
+
+const ONE_DAY_IN_MS = 3600 * 24 * 1000;
+
+const makeRangeWidget = instantsearch.connectors.connectRange(
+  (options, isFirstRendering) => {
+    if (!isFirstRendering) {
+      return;
+    }
+
+    const { refine } = options;
+
+    new Calendar({
+      element: $('#calendar'),
+      same_day_range: true,
+      callback: function() {
+        const start = new Date(this.start_date).getTime();
+        const end = new Date(this.end_date).getTime();
+        const actualEnd = start === end ? end + ONE_DAY_IN_MS - 1 : end;
+
+        refine([start, actualEnd]);
+      },
+      // Some good parameters based on our dataset:
+      start_date: new Date('8/01/2021'),
+      end_date: new Date('8/31/2021'),
+      earliest_date: new Date('01/01/2021'),
+      latest_date: new Date('01/01/2022'),
+    });
+  }
+);
+
+const dateRangeWidget = makeRangeWidget({
+  attribute: 'start_at',
+});
+
 /**********************************************************
  * Facet Dropdowns
  *********************************************************/
@@ -13,7 +51,6 @@ const bedroomsDropdown = createDropdown(
     instantsearch.widgets.refinementList, {
         closeOnChange: () => window.innerWidth >= MOBILE_WIDTH,
         cssClasses: { root: 'my-NumericDropdown'},
-
     }
 );
 const bathroomsDropdown = createDropdown(
@@ -37,30 +74,30 @@ const brandDropdown = createDropdown(instantsearch.widgets.refinementList, {
 
 
 const noResultsFeaturedCarousel = `
-    <div>No results. Check out our Featured Listings</div>
+    <div style="font-size: 20px; margin-bottom: 1rem">No results. Check out our Featured Listings</div>
     <div class="ais-Hits">
         <ol class="ais-Hits-list">
             <li class="ais-Hits-item">
                 <div class="item">
-                    <a href="https://www.airbnb.com/rooms/992821" target="_blank">
-                        <img class="item-image" src="https://a0.muscache.com/pictures/be420050-6c9c-4b3e-9f5d-aea30148d816.jpg">
+                    <a href="https://www.airbnb.com/rooms/42758714" target="_blank">
+                        <img class="item-image" src="https://a0.muscache.com/pictures/3368f78f-c34a-434c-85a0-b729cbf52b9d.jpg">
                     </a>
-                    <p class="item-header">Entire house in Woodside Hills</p>
-                    <h3>Serene West Asheville Home with a Mountain View</h3>
-                    <p>$174 / night</p>
+                    <p class="item-header">Entire condominium in Downtown Asheville</p>
+                    <h3>Downtown Asheville Modern Retreat</h3>
+                    <p>$520 / night</p>
                 </div>
             </li>
             <li class="ais-Hits-item">
                 <div class="item">
-                    <a href="https://www.airbnb.com/rooms/992821" target="_blank">
-                        <img class="item-image" src="https://a0.muscache.com/pictures/be420050-6c9c-4b3e-9f5d-aea30148d816.jpg">
+                    <a href="https://www.airbnb.com/rooms/36727850" target="_blank">
+                        <img class="item-image" src="https://a0.muscache.com/pictures/e08fecf3-cacb-4ce2-9814-4a8ae6d84308.jpg">
                     </a>
-                    <p class="item-header">Entire house in Woodside Hills</p>
-                    <h3>Serene West Asheville Home with a Mountain View</h3>
-                    <p>$174 / night</p>
+                    <p class="item-header">Entire guest suite in Biltmore Forest</p>
+                    <h3>Biltmore Hideaway - Luxury Urban Tree Top Retreat</h3>
+                    <p>$187 / night</p>
                 </div>
             </li>
-            <li class="ais-Hits-item">
+           <li class="ais-Hits-item">
                 <div class="item">
                     <a href="https://www.airbnb.com/rooms/992821" target="_blank">
                         <img class="item-image" src="https://a0.muscache.com/pictures/be420050-6c9c-4b3e-9f5d-aea30148d816.jpg">
@@ -81,7 +118,7 @@ injectScript(
             '1dbb0afe7e8a46415d05c57aca77e885'
         );
         const search = instantsearch({
-            indexName: 'listings',
+            indexName: 'listings_w_availability',
             searchClient,
             hitsPerPage: 8,
         });
@@ -124,9 +161,9 @@ injectScript(
                                     <img class="item-image" src="${hit.picture_url}">
                                 </a>
                                 <p class="item-header">${hit.property_type} in ${hit.neighborhood}</p>
-                                <h3>${hit.name}</h3>
-                                <p>$ ${hit.price_per_day} / night</p>
-                                <p>${badge}</p>
+                                <h3 class="item-name">${hit.name}</h3>
+                                <p class="item-subtitle">$ ${hit.price_per_day} / night</p>
+                                <p class="item-subtitle">${badge}</p>
                             </div>
                         `;
                     }
@@ -136,6 +173,7 @@ injectScript(
                 container: '#pagination'
             }),
 
+            // Dropdown Facets
             bedroomsDropdown({
                 container: '#numBeds',
                 attribute: 'bedrooms',
@@ -156,6 +194,10 @@ injectScript(
                 attribute: 'room_type',
                 lable: 'Room Type',
             }),
+
+
+            // Calendar Picker
+            dateRangeWidget,
         ]);
         search.start();
     }

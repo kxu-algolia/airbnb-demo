@@ -47,9 +47,13 @@ body {
     font-size: 1.2rem;
 }
 
+.header-right {
+    text-align: right;
+}
+
 .main-container {
     height: 80vh;     /* take into account header */
-    width: 80vw;
+    width: 90wh;
     margin: 0 auto;
     padding: 1rem;
 }
@@ -71,11 +75,16 @@ body {
     font-size: inherit;
 }
 
-
-#searchbox {
-    /* margin-bottom: 2rem; */
+.ais-Pagination {
+    margin: 1rem 0;
 }
 
+
+#searchbox {
+    margin-top: .25rem;
+    margin-right: 1rem;
+    /* margin-bottom: 2rem; */
+}
 
 #maps {
     height: 800px;
@@ -215,9 +224,16 @@ body {
 .item img {
     object-fit: cover;
     width: 100%;
-    height: 250px;
+    height: 200px;
 }
 
 .item-header {
     font-weight: 300;
+}
+
+.item-name {
+
+}
+.item-subtitle {
+    font-size: 11px;
 }
